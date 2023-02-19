@@ -30,6 +30,20 @@ try:
 except:
     offset_distance = 20 #distance from the point out on the bevel
 
+radius = diameter / 2
+
+#we slice the part in the middle into pizza slices and calc the distance between each cut at the outer crust
+def calc_base_of_triangle(angle, vert_lenght):
+    #a/sin A = b/sin B = c/sin C
+    A = angle / 2
+    B = 90 - A
+    C = 90
+    c = vert_lenght
+    #a/sin A = c/sin C => a = (c/sinC) * sinA <=>/sinC=1/<=> a = c * sinA
+    a = (c * math.sin(math.radians(A)))
+
+    return a
+
 
 
 class petal_class:
@@ -41,5 +55,6 @@ def main():
     petal_list = []
     for i in range(flower_petal_amount):
         petal_list.append(petal_class(i * (360 / flower_petal_amount)))
+    print(str(calc_base_of_triangle((360 / flower_petal_amount), diameter)))
 
 main()
